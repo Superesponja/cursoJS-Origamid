@@ -17,9 +17,14 @@ const primeiraLI = document.querySelector('li');
 //console.log(primeiraLI);
 
 const linkInterno = document.querySelector('[href^="#"]');
+// no comando acima, o argumento entre parênteses será um celetor css. Além dele, podemos passar também um atributo  do seletor, entre colchetes, filtrando ainda mais a opção. Por alguma razão, no caso de links, não precisamos passar o seletor css (a sintaxe completa seria "('a[href^="#"]')"). No exemplo document.querySelector('a[href^="#"]'):
+//  'a' é o seletor css;
+// [href] é o atributo;
+// ^= indica que queremos os elementos que "comecem com ..."
+// # é o valor do atributo. neste caso, os links internos do nosso site.
 //console.log(linkInterno);
 
-//querySelectior: retorna TODOS os elementos que combinarem com o seu seletor CSS:
+//querySelector: retorna TODOS os elementos que combinarem com o seu seletor CSS:
 
 const animaisImg = document.querySelectorAll('.animais img');
 console.log(animaisImg);
