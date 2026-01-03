@@ -74,11 +74,24 @@ window.addEventListener('keyup', handleEvent);
 KEYBOARD
 É possivel também utilizar os eventos para se criar atalhos de teclado, facilitando a navegação do usuário final.
 
-*/
-
 function handleKeyboard(evento) {
   if(evento.key === 'a')
     document.body.classList.toggle('azul');
   else if(evento.key === 'v')
     document.key.classList.toggle('vermelho');
 }
+
+FOREACH E EVENTOS
+// Como o método addEventListener é adiconada a um único elemento, para faze-lo em 'lote', precisamos usar um loop:
+
+  const imgs = document.querySelectorAll('img');
+  function handleImg(event) {
+    console.log(event.target);
+  }
+
+  imgs.forEach((img) => {
+    img.addEventListener('click', handleImg);
+  });
+
+*/
+

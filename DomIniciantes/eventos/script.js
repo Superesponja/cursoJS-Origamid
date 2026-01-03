@@ -1,57 +1,62 @@
-// Verifique a distância da primeira imagem em relação ao topo da página
-const primeiraImagem = document.querySelector('.animais img');
-console.log(primeiraImagem.getBoundingClientRect().top);
+// Quando o usuário clicar nos links internos do site, adicione a classe ativo ao item clicado e remova dos demais itens caso eles possuam a mesma. Previna o comportamento padrão desses links
+const linksInternos = document.querySelectorAll('a[href^="#"]');
+console.log(linksInternos);
 
-// Retorne a soma da largura de todas as imagens
-function somaImagens(){
-  const todasImagens = document.querySelectorAll('img');
-console.log(todasImagens);
-let totalWidth = 0;
-todasImagens.forEach(element => {
-  totalWidth += element.clientWidth;
-});
-console.log(totalWidth);
-}
-window.onload = function(){
-  somaImagens(); //o js é carregado antes do html. sendo assim, o script não consegue pegar a largura das imagens que ainda não foram carregadas, o que prejudica a medida correta. Para corrigir isso, usamos a função 'onload' do elemento 'window', que recebe uma função de callback. Essa função somente será executada quando a página for carregada completamente. 
-}
-
-// Verifique se os links da página possuem o mínimo recomendado para telas utilizadas com o dedo. (48px/48px de acordo com o google)
-const linksPagina = document.querySelectorAll('a');
-console.log(linksPagina);
-
-class oLink {
-  constructor(textoLink, hrefLink, alturaLink, larguraLink){
-    this.textoLink = textoLink;
-    this.hrefLink = hrefLink;
-    this.alturaLink = alturaLink;
-    this.larguraLink = larguraLink;
-  };
-}
+function funcAtivo(evento){
   
-var vetorLinks = [];
+  linksInternos.forEach((item) =>{
+    
+    if(item == evento.target){
+      item.classList.add('ativo');
 
-linksPagina.forEach(function(item, index){
-  vetorLinks.push(new oLink(
-    item.innerText,
-    item.href,
-    item.clientHeight,
-    item.clientWidth,
-  ));    
+    } else {
+      item.classList.remove('ativo');
+    }
+    evento.preventDefault();
+  });
+};
+
+linksInternos.forEach((item, index) =>{
+  item.addEventListener('click', funcAtivo);
 });
 
-vetorLinks.forEach(item => {
-  if(item.alturaLink < 48 || item.larguraLink < 48 ){
-    console.log (`o link ${item.textoLink} não está dentro dos padrões para uso em mobile ${item.alturaLink}x${item.larguraLink}px`);
-  } else {
-    console.log (`o link ${item.textoLink} está dentro dos padrões para uso em mobile ${item.alturaLink}x${item.larguraLink}px`);
+
+// Selecione todos os elementos do site começando a partir do body, ao clique mostre exatamente quais elementos estão sendo clicados
+
+
+const todosElementos = document.querySelectorAll( 'body *');
+console.log(todosElementos);
+function mostraElemento(evento) {
+  console.log(evento.currentTarget);
+};
+
+todosElementos.forEach(elemento => {
+  elemento.addEventListener('click', mostraElemento);
+});
+
+
+
+// Utilizando o código anterior, ao invés de mostrar no console, remova o elemento que está sendo clicado, o método remove() remove um elemento
+
+/*
+const todosElementos = document.querySelectorAll( 'body *');
+console.log(todosElementos);
+function mostraElemento(evento) {
+  evento.currentTarget.remove();
+};
+
+todosElementos.forEach(elemento => {
+  elemento.addEventListener('click', mostraElemento);
+});
+*/
+
+// Se o usuário clicar na tecla (t), aumente todo o texto do site. 
+
+function aumentaFonte(event){
+  if(event.key === 't'){
+    document.documentElement.classList.toggle('fontaum');
   }
-});
-
-// Se o browser for menor que 720px, adicione a classe menu-mobile ao menu
-const telaMobile = window.matchMedia('(max-width: 720px)').matches;
-const menuSite = document.querySelector('.menu');
-console.log(menuSite);
-if (telaMobile){
-menuSite.classList.add("menu-mobile");
+  
 }
+
+window.addEventListener('keydown', aumentaFonte);

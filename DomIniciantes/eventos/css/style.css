@@ -1,3 +1,7 @@
+html.fontaum {
+  font-size: 150%;
+}
+
 body, h1, h2, ul, li, p, dd, dt, dl {
   margin: 0px;
   padding: 0px;
@@ -206,3 +210,4 @@ body {
     margin-bottom: 0px;
   }
 }
+
