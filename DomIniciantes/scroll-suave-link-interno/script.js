@@ -56,6 +56,42 @@ function initAccordeon(){
     })
   }
 }
+//SCROLL SUAVE E LINKS INTERNOS
+/** O último passo, nesse módulo do curso, será criar uma rolagem suave do menu aos seus itens na mesma página, ou seja, os links internos.
+ * Isso é útil pois a transição brusca que é o funcionamento padrão dos links passa a impressão de que fomos redirecionados para outra página. A rolagem suave acaba com isso, realizando uma transição lenta e perseptível 
+ * 
+ */
 
+function initScrollSuave(){
+  const linksinternos = document.querySelectorAll('.js-menu a[href^="#"');
+
+  function scrollToSection(event){
+    //nesta função, nós selecionamos todos os links internos e removemos o comportamento padrão deles.
+    // Além disso, selecionamos as sections correspondesdes ao link clicado.
+    event.preventDefault();
+    const href = event.currentTarget.getAttribute('href');
+    const section = document.querySelector(href);
+      
+    /**FORMA ALTERNATIVA
+     * Esse método rola a tela, no eixo (x,y), permitindo a opção de behavior.
+     * const topo = section.offsetTop;
+    window.scrollTo({
+      top: topo,
+      behavior: "smooth",
+    })*/
+
+    section.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+    
+    console.log(section);
+  } 
+
+  linksinternos.forEach((link)=>{
+    link.addEventListener('click', scrollToSection);
+  })
+}
 activeTab();
 initAccordeon();
+initScrollSuave();
