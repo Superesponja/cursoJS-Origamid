@@ -1,111 +1,35 @@
-// OBJETOS
-/* 
-Criar um objeto é simples, basta definirmos uma variável e iniciar a definição do seu valor com chaves {}. Mas e se precisarmos criar um novo objeto, com as mesmas características do anterior? É possível com o Object.create, mas veremos ele mais tarde.
-
-const carro = {
-  marca: "Marca",
-  preco: 0
+//A propriedade prototype é um Objeto adicionado a uma função quando a mesma é criada.
+/* */
+function Pessoa(nome, idade) {
+  this.nome = nome;
+  this.idade = idade;
+  this.nadar = function(){
+    return "Pessoa nadou, mas não pelo prototype; pela própria função";
+  }
+  return 1+1;
 }
 
-const honda = carro;
-honda.marca = 'honda';
-honda.preco = 2000;
+const renan = new Pessoa("Renan", 36);
 
-const fiat = carro;
-honda.marca = 'fiat';
-honda.preco = 1000;
+//console.log(renan.prototype);
+//console.log(Pessoa.prototype);
 
-console.log(carro);
-console.log(honda);
-console.log(fiat);
-A sintaxe tentada acima não funciona, pois a cada vez que tentamos criar um novo "objeto = carro", nós estamos na verdade, referenciando o objeto carro e não criando uma cópia dele. Da forma como fizemos, nós sobrescrevemos todos os objetos com os dados do objeto 'fiat'.
-A forma correta de fazer é com uma função construtora:
- 
+// É possível adicionar novas propriedades e métodos ao objeto prototype. Os métodos adicionados à função construtora podem ser acessados por todos os objetos criados a partir da função e também pela própria função, sem necessidade de instanciar um objeto.
 
-function Carro() {
-  this.marca = 'Marca'; //a palavra reservada 'this' serve para referenciar o próprio escopo da função. 
-  this.preco = 0;
+Pessoa.prototype.andar = function(){
+  return 'Pessoa andou';
 }
-
-const honda = new Carro(); // por padrão, as funções construtoras são escritas em PascalCase, ou seja, a primeira letra maiúscla, seguida do cammelCase normal.
-honda.marca = "Honda";
-honda.preco = '4000';
-
-const fiat = new Carro(); // a palavra resevada 'new' executa uma ´serie de passos para criar o objeto:
-*/
-/**
-  const honda = new Carro();
-
-  // 1 Cria um novo objeto
-  honda = {};
-
-  // 2 Define o protótipo
-  honda.prototype = Carro.prototype;
-
-  // 3 Aponta a variável this para o objeto
-  this = honda;
-
-  // 4 Executa a função, substituindo this pelo objeto
-  honda.marca = 'Marca';
-  honda.preco = 0;
-
-  // 5 Retorna o novo objeto
-  return honda = {
-    marca: 'Marca',
-    preco: 0,
-  }
-
-fiat.marca = 'Fiat';
-fiat.preco = 3000;
-
-console.log(honda);
-console.log(fiat);
-
-Outra possibilidade, é passar os atributos a serem preenchidos, como parâmetros da função contrutora: 
-  function Carro(marcaAtribuida, precoAtribuido) {
-  this.marca = marcaAtribuida;
-  this.preco = precoAtribuido;
-  }
-  *** NOTA: ainda assim, caso alguém tente "honda = carro();", isso funcionará. os atributos do obeto estarão vazios.
-  const honda = new Carro('honda, 3000);
-
-Um objeto pode também ter variáveis somente visíveis dentro do contexto do próprio objeto: 
-  function Carro2(marca, precoInicial){
-    const taxa = 1.2; //invisível
-    const precoFinal = precoInicial * taxa; //invisível
-    this.marca = marca; //visível externamente
-    this.preco = precoFinal; //visível externamente
-  }
-
-  EXEMPLO PRÁTICO DE FRONTEND
-
-  const Dom = {
-  seletor: 'li',
-  element: function(){
-    return document.querySelector(this.seletor);    
-  },
-    ativar(){ //outra sintaxe para criação de métodos no JS
-    //jeito burro de fazer; daria para usar o método que retorna o element, criado anteriormente: const elementoSelecionado = document.querySelector(this.seletor);
-    
-    this.element().classList.add('ativar');
-    } 
-  }
-
-  O objeto acima está funcional, todavia, nós frequentemente desejamos reutilizar um objeto criado. sendo assim, muito mais funcional é criar transforma-lo em uma função construtora, para que ele se torne reutilizável.
- */
-/**
-function Dom(seletor) {  
-  this.element = function(){
-    return document.querySelector(seletor);    
-  }
-  this.ativar = () => {    
-      this.element().classList.add('ativar');
-  } 
+Pessoa.prototype.nadar = function(){
+  return 'Pessoa nadou  ';
 }
+// se a função existir criada na função construtora e no prototype (ou ainda diretamente em um objeto instanciado pela função construtora), a executada sempre será a mais específica (no caso, na da função construtora): Para acessar ao método (função) mais genérico, será necessário incluir o .__proto__.funçãoDesejada na chamada:
 
-const li = new Dom('li'); 
-const ul = new Dom('ul'); 
-const lastLi = new Dom('li:last-child'); 
- */
+//console.log(renan.nadar());
+//console.log(renan.__proto__.nadar());
 
+// o __proto__ é encadeado, ou seja, se eu observar o que há dentro de renan.__proto__ (que foi herdado da função construtroa 'Pessoa'), verei que há um outro '__proto__' lá, desta vez, herdado da função construtora 'Object', contendo todos os métodos desta. Esse tipo de acesso (renan.__proto__) não é algo usual na prática da programação.
+console.log(renan.toString());
+console.log(renan.isPrototypeOf());
+console.log(renan.valueOf());
 
+// O Object é o construtor mais fundamental do JavaScript, o que é usado para criar todos os demais.
