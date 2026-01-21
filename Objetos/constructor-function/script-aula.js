@@ -33,3 +33,37 @@ console.log(renan.isPrototypeOf());
 console.log(renan.valueOf());
 
 // O Object é o construtor mais fundamental do JavaScript, o que é usado para criar todos os demais.
+// Todos os tipos de dados em JS são formados a partir de construtores nativos. Esses construtores, como funções que são, também possuem seus protótipos com propriedades e métodos, que poderã ser aecessados pelo tipo de dado.
+
+const pais = 'Brasil'; //essa é a forma contracta de criação de um objeto string
+const cidade = new String('Tremembé'); //essa é a forma extendida da criação de um objeto string
+// ambas terão acesso à todos os métodos e propriedades da função constrotora String, via __proto__
+console.log(pais.toLowerCase());
+console.log(cidade.toUpperCase());
+// nós conseguimos ver os métodos e propriedades de um tipo de dado, indo no consolo do navegador e digitando 'Funcao.prototype'. Ex.: String.prototype
+// É comum, principalmente em códigos mais antigos, o uso direto de funções do protótipo do construtor Array, sendo possível, como já dissemos antes, fazer isso com qualquer outro Construtor:
+const lista = [document.querySelectorAll('li')];
+const listaAnimais = ["Cachorro", "gato", "macaco"];
+// Transforma em uma array
+const listaArray = Array.prototype.slice.call(lista);
+
+//Existem métodos que são atrelados ao prototype da função construtora e outros que são atrelados diretamente ao Objeto nativo (como no caso do Array). Somente os primeiros são herdados pelos objetos criados a partir da função construtora.
+
+
+//Os métodos e propriedades acessados com o '.' são referentes ao tipo de dados que é retornado antes desse"."
+
+const Carro = {
+  marca: 'Ford',
+  preco: 2000,
+  acelerar() {
+    return true;
+  }
+}
+
+Carro // Object
+Carro.marca // String
+Carro.preco // Number
+Carro.acelerar // Function
+Carro.acelerar() // Boolean
+Carro.marca.charAt // Function
+Carro.marca.charAt(0) // String
