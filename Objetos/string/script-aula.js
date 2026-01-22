@@ -65,3 +65,34 @@ fruta.padStart(9);//    "   Banana"
 fruta.padEnd(9);//      "Banana   "
 fruta.padStart(9,".")// "...Banana"
 fruta.padEnd(9,"as");// "Bananaasa"
+
+
+//* REPEAT 
+// repete a string que invocou o método, o número de vezes passado como argumento
+fruta.repeat(4); // "BananaBananaBananaBanana"
+
+//*REPLACE
+//Substitu o termo um pelo termo 2 em uma string; str.replace(gexp|substr, newstr|function) o primeiro argumento pode ser uma substrign ou uma regular Expression (veremos isso mais tarde) e o segundo, uma outra string ou uma função. Caso o primeiro argumento seja uma subtring, ele substituirá somente a primeira ocorrência da mesma; para substituir todas, será necessário recorrer às 'regular expressions'
+let listaItens = 'Camisas Bonés Calças Bermudas Vestidos Saias';
+listaItens = listaItens.replace(/[ ]+/g, ', ');
+
+let preco = 'R$ 1200,43';
+preco = preco.replace(',', '.');
+console.log(preco);
+
+//*SPLIT
+//'Quebra' a string, de acordo com o delimitador passado como argumento, retornando um array com as substrings separadas, cada uma em uma posição. Caso o argumento seja uma string vazia (""), o retorno será um array com a string original quebrada caractere por caractere.
+listaItens = listaItens.split(', ');
+console.log(listaItens);
+
+//* TOLOWERCASE e TOUPPERCASE
+// Usados para converter a string nela mesma, com todos os caracteres maiúsculos ou minúsculos.
+fruta.toLocaleLowerCase(); // 'banana'
+fruta.toLocaleUpperCase(); // 'BANANA'
+
+//* TRIM, TRIMSTART TRIMEND
+//Remove espaços em branco no começo ou no final de uma string
+const valor = ' R$ 23.00   ';
+valor.trim(); // 'R$ 23.00'
+valor.trimStart(); //R$ 23.00   ';
+valor.trimEnd();//' R$ 23.00'
