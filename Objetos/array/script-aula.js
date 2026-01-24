@@ -85,7 +85,7 @@ const maisTransportes = [].concat(transporte1, transporte2, 'Van');
 
 //[].join(separador): retorna uma string com todos os valores do array, separados pelo argumento fornecido. Se passamos uma string vazia, ele vai com todos os itens grudados; se não passarmos argumentos, ele separa com vírgulas.
 
-const linguagens = ['html', 'css', 'js', 'php', 'python'];
+const linguagenss = ['html', 'css', 'js', 'php', 'python'];
 linguagens.join(); // 'html,css,js,php,python'
 linguagens.join(' '); // 'html css js php python'
 linguagens.join('-_-'); // 'html-_-css-_-js-_-php-_-python'

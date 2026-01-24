@@ -1,76 +1,56 @@
-// Utilizando o foreach na array abaixo,
-// some os valores de Taxa e os valores de Recebimento
+const comidas = ['Pizza', 'Frango', 'Carne', 'Macarrão'];
+// Remova o primeiro valor de comidas e coloque em uma variável
+let primeiroValor = comidas.shift();
+// Remova o último valor de comidas e coloque em uma variável
+let ultimoValor = comidas.pop();
+// Adicione 'Arroz' ao final da array
+comidas.push('Arroz');
+// Adicione 'Peixe' e 'Batata' ao início da array
+comidas.unshift("Peixe", "Batata");
 
-const transacoes = [
-  {
-    descricao: 'Taxa do Pão',
-    valor: 'R$ 39',
-  },
-  {
-    descricao: 'Taxa do Mercado',
-    valor: 'R$ 129',
-  },
-  {
-    descricao: 'Recebimento de Cliente',
-    valor: 'R$ 99',
-  },
-  {
-    descricao: 'Taxa do Banco',
-    valor: 'R$ 129',
-  },
-  {
-    descricao: 'Recebimento de Cliente',
-    valor: 'R$ 49',
-  },
-];
-
-let totalTaxas = 0;
-let totalRecebimentos = 0;
-
-transacoes.forEach((transacao) =>{
-  
-  if(transacao.descricao.toLocaleLowerCase().includes('recebimento'))
-    totalRecebimentos += parseFloat(transacao.valor.slice(3).trim(),2);
-
-  if(transacao.descricao.toLocaleLowerCase().includes('taxa'))
-    totalTaxas += +transacao.valor.slice(3).trim(),2; // o "+" antes de uma variável string que contenha um número dentro, converte essa string em número de fato.
-})
-
-console.log(totalTaxas.toFixed(2));
-console.log(totalRecebimentos.toFixed(2));
+console.log(primeiroValor, ultimoValor, comidas);
 
 
+const estudantes = ['Marcio', 'Brenda', 'Joana', 'Kleber', 'Julia'];
+// Arrume os estudantes em ordem alfabética
+estudantes.sort();
+// Inverta a ordem dos estudantes
+estudantes.reverse();
 
-// Retorne uma array com a lista abaixo
-const transportes = 'Carro;Avião;Trem;Ônibus;Bicicleta';
-
-const arrayTransportes = transportes.split(';');
-console.log(arrayTransportes);
-
-
-// Substitua todos os span's por a's
-const html = `<ul>
-                <li><span>Sobre</span></li>
-                <li><span>Produtos</span></li>
-                <li><span>Contato</span></li>
-              </ul>`;
-
-let novoHtml = html.split("span>");
-novoHtml = novoHtml.join("a>");
-console.log(novoHtml);
-
-// Retorne o último caracter da frase
-const frase = 'Melhor do ano!';
-console.log(frase[frase.length-1]);
-
-// Retorne o total de taxas
-const transacoess = ['Taxa do Banco', '   TAXA DO PÃO', '  taxa do mercado', 'depósito Bancário', 'TARIFA especial'];
-
-let contadorTaxa = 0;
-transacoess.forEach((item)=>{
-  if(item.toLowerCase().includes('taxa'))
-    contadorTaxa +=1;
-})
-console.log(contadorTaxa);
+console.log(estudantes);
+// Verifique se Joana faz parte dos estudantes
+if(estudantes.includes("Joana"))
+  console.log("Joana está entre os estudantes");
+else
+  console.log("Joana não está entre os estudantes");
+// Verifique se Juliana faz parte dos estudantes
+if(estudantes.includes("Juliana"))
+  console.log("Juliana está entre os estudantes");
+else
+  console.log("Juliana não está entre os estudantes");
 
 
+let html = `<section>
+              <div>Sobre</div>
+              <div>Produtos</div>
+              <div>Contato</div>
+            </section>`
+// Substitua section por ul e div com li,
+// utilizando split e join
+html = html.split('section>');
+html = html.join('ul>');
+html = html.split('div>');
+html = html.join('li>');
+//também é possível se encadear todas as alterações em uma mesma linha, tendo em vista que os retornos de todos eles são os vetores modificados:
+//html.split('section>').join('ul>').split('div>').join('li>');
+console.log(html);
+
+
+const carros = ['Ford', 'Fiat', 'VW', 'Honda'];
+// Remova o último carro, mas antes de remover
+// salve a array original em outra variável
+
+const carrosOriginal = carros.slice();//assim, ele retorna uma cópia do vetor, sem apontar para o mesmo.
+carros.pop();
+console.log(carros);
+console.log(carrosOriginal);
