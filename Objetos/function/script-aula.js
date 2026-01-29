@@ -56,7 +56,7 @@ Dom.prototype.ativo = function(classe) {
 const lista = new Dom('ul');
 lista.ativo('ativar');
 console.log(lista);
-*/
+
 //CALL EM ARRAYS
 const frutas = ['Banana', 'Pêra', 'Uva'];
 Array.prototype.pop.call(frutas); //mesma coisa que frutas.pop(); . Então porquê usar isso???
@@ -76,3 +76,40 @@ const filtro = Array.prototype.filter.call(li, (item)=>{
   return item.classList.contains('ativo');
 });
 console.log(filtro);
+
+//function.apply()
+//O apply(this, [arg1, arg2, ...]) funciona como o call, a única diferença é que os argumentos da função são passados através de uma array.
+//Útil para uso em funções como a max ou a min, do objeto Math, onde os argumentos precisam ser passados separadamente. Com o apply(), podemos passa-los como um array e a função funcionará normalmente:
+const numeros = [3,4,6,1,34,44,32];
+Math.max.apply(null, numeros);
+Math.max.call(null, 3, 4, 5, 6, 7, 20);
+*/
+// Podemos passar null para o valor  de this, caso a função não utilize o objeto principal para funcionar (uso em objetos nativos JS, por exemplo).
+
+
+//funcition.bind()
+//Diferente do call e apply, bind(this, arg1, arg2, ...) não irá executar a função, mas sim retornar a mesma com o novo contexto de 'this'. O primeiro parâmetro ainda é o contexto de 'this'.
+
+const li = document.querySelectorAll('li');
+
+const filtrarLi = Array.prototype.filter.bind(li, function(item) {
+  return item.classList.contains('ativo');
+}); // carregou a função com o contexto de 'this' no array-like 'li', na variável filtrarLi. 
+
+filtrarLi(); //executou a função.
+// útil para casos em que a função será reutilizada em algum momento. caso contrário, prefira call() ou apply() 
+
+//Outro exemplo
+const carro = {
+  marca: 'Ford',
+  ano: 2018,
+  acelerar: function(aceleracao, tempo){
+    return `${this.marca} acelerou ${aceleracao} em ${tempo}`;
+  }
+}
+
+const honda = {
+  marca: 'Honda'  
+}
+
+const acelerarHonda = carro.acelerar.bind(honda, 399);//aqui, passamos a aceleração como default. Útil para contextos em que o valor é fixo.
