@@ -60,7 +60,7 @@ const carro = {
 
 Object.assign(moto, funcaoAutomovel); //recebeu acelerar() e buzinar()
 Object.assign(carro, funcaoAutomovel); //recebeu acelerar() e buzinar()
-*/
+
 
 //OBJECT.DEFINEPROPERTIES()
 //Object.defineProperties(alvo, propriedades) adiciona ao alvo, novas propriedades. A diferença aqui é a possibilidade de serem definidaas as características dessas propriedades:
@@ -118,3 +118,33 @@ moto;
 //Object.seal(): impede a adição de novas propriedaes, não impedindo a alterçaão das já existentes. Também não permite a exclusão das já existentes.
 //Object.preventExtensions(): impede a adição de novas propriedaes, permitindo a exclusão das já existentes.
 //Oject.isFrozen(obj), Object.isExtensible(obj) Object.isSealed(obj) verificam os referidos métodos foram usados sobre o obj em questão.
+
+
+//PROPRIEDADES E MÉTODOS DO PROTÓTIPO DE OBJ
+//TODO objeto em JS herda o protótipo de Object e, portanto, tem acesso aos seus métodos e propriedades:
+
+//{}.constrctor: retorna o constutor do objeto.
+//{}.hasownProperty('prop'): Verifica se o objeto possui a propriedade alvo. Nâo inclui as herdadas. 
+//{}.propertyIsEnumerable('prop'): Verifica se a propriedade alvo é enumerável no objeto.
+//{}.isPrototypeOf(valor): Verifica se é o prototipo do valor passado.
+//{}.toString(): retorna uma string. Seu funcionamento dependerá do objeto que invocou o método.
+
+const frutas = ['Banana', 'Uva'];
+frutas.toString(); // 'Banana,Uva'
+typeof frutas; // object
+Object.prototype.toString.call(frutas); // [object Array]
+
+const frase = 'Uma String';
+frase.toString(); // 'Uma String'
+typeof frase; // string
+Object.prototype.toString.call(frase); // [object String]
+
+const carro = {marca: 'Ford'};
+carro.toString(); // [object Object]
+typeof carro; // object
+Object.prototype.toString.call(carro); // [object Object]
+
+const li = document.querySelectorAll('li');
+typeof li; // object
+Object.prototype.toString.call(li); // [object NodeList]
+*/
