@@ -90,3 +90,31 @@ moto.rodas = 4;
 delete moto.capacete;
 moto;
 // {rodas: 2}
+
+
+//OBJECT.GETOWNPROPERTYDESCRIPTORS()
+//Object.getOwnPropertyDescriptors(obj) Lista todos os métodos e propriedades de um objeto, com suas devidas configurações.
+//Object.getOwnPropertyDescriptors(obj.prototype) Lista todos os métodos e propriedades de um objeto, com suas devidas configurações. 
+//Object.getOwnPropertyDescriptors(obj, pro/meth): faz o mesmo que o anterior, porém, para um só método/propriedade do obejto passado no primeiro argumetno.
+
+
+//OBJECT.KEYS(obj), OBJECT.VALUES(obj) OBJECT.ENTRIES(obj)
+//Object.keys(obj) retorna uma array com as chaves de todas as propriedades diretas e enumeráveis do objeto.
+//Object.values(obj) retorna uma array com os valores do objeto.
+// Object.entries(obj) retorna uma array com array's contendo a chave e o valor.
+
+
+//OBJECT.GETOWNPROPERTYNAMES()
+//Object.getOwnPropertyNames(obj): Retorna uma array com todas as propriedades diretas do objeto (não retorna as do protótipo).
+
+
+//Object.getPrototypeOf() e Object.is()
+//Object.getPrototypeOf(), retorna o protótipo do objeto.
+// Object.is(obj1, obj2) verifica se os objetos são iguais e retorna true ou false.
+
+
+//OBJECT. FREEZY(), OBJECT.SEAL() e OBJECT.PREVENTEXTENSIONS()
+//Object.freezy(): impede qualquer mudança nas propriedaes.
+//Object.seal(): impede a adição de novas propriedaes, não impedindo a alterçaão das já existentes. Também não permite a exclusão das já existentes.
+//Object.preventExtensions(): impede a adição de novas propriedaes, permitindo a exclusão das já existentes.
+//Oject.isFrozen(obj), Object.isExtensible(obj) Object.isSealed(obj) verificam os referidos métodos foram usados sobre o obj em questão.
