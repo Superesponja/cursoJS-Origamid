@@ -1,0 +1,19 @@
+export default function initDropdownMenu () {
+
+}
+
+const dropdownMenus = document.querySelectorAll('[data-dropdown]');
+
+dropdownMenus.forEach((menu)=>{
+  //menu.addEventListener('touchstart', handleClick);
+  //menu.addEventListener('click', handleClick); adicionar a função aos dois eventos assim ou como faremos abaixo:
+  ['touchstart', 'click'].forEach(userEvent =>{
+    menu.addEventListener(userEvent, handleClick);
+  });
+});
+
+
+function handleClick(event){
+  event.preventDefault();
+  this.classList.toggle('ativo');
+}
